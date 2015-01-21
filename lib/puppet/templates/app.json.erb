@@ -1,0 +1,11 @@
+{
+    "id": "<%= @resource[:id] %>",
+    "cmd": "<%= @resource[:cmd] %>",
+    "cpus": <%= @resource[:cpus] %>,
+    "mem": <%= @resource[:mem] %>,
+    "instances": <%= @resource[:instances] %>,
+    "ports": [
+        <%= @resource[:port] %>
+    ],
+    "backoffSeconds": 1
+}

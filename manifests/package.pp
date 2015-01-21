@@ -1,7 +1,7 @@
 # class marathon::package
 class marathon::package (
-  $package = undef,
-  $ensure = 'installed',
+  $package  = undef,
+  $ensure   = 'installed',
 ) {
 
   if $package {
