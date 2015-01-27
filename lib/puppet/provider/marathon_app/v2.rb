@@ -40,7 +40,8 @@ Puppet::Type.type(:marathon_app).provide(:v2, :parent => Puppet::Provider) do
           app_json,
           extheader
       )
-      
+
+      #TODO: raise error checking
       if response.ok?
         Puppet.info("Created new app called #{name}")
       end

@@ -6,6 +6,7 @@ Puppet::Type.newtype(:marathon_app) do
 
   ensurable
 
+  #TODO: more strict validation according to marathon api
   newparam(:name, :namevar => true) do
     desc 'the name of the marathon_app'
     validate do |value|
