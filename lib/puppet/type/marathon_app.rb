@@ -56,6 +56,16 @@ Puppet::Type.newtype(:marathon_app) do
     end
   end
 
+  newproperty(:port) do
+    desc 'the port to use'
+    validate do |value|
+      fail Puppet::Error, 'Empty values are not allowed' if value == ''
+    end
+    def insync?(is)
+      is.to_i == should.to_i
+    end
+  end
+
   newproperty(:instances) do
     desc 'the instances to run on startup'
   end
