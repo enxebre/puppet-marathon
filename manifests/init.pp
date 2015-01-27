@@ -61,7 +61,8 @@ class marathon (
   validate_bool($service_enable)
 
   class { 'marathon::install': } ->
-  class { 'marathon::service': } ->
+  class { 'marathon::service': }
+
   class { 'marathon::app_factory':
     apps    => $apps,
     require => [ Service['marathon'], Package[$package] ],
