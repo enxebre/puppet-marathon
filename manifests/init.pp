@@ -64,5 +64,6 @@ class marathon (
   class { 'marathon::service': } ->
   class { 'marathon::app_factory':
     apps    => $apps,
+    require => [ Service['marathon'], Package[$package] ],
   }
 }
