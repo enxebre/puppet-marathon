@@ -32,7 +32,7 @@ Puppet::Type.type(:marathon_app).provide(:v2, :parent => Puppet::Provider) do
     erb_file = "#{Pathname.new(File.expand_path('../../../templates', __FILE__))}/app.json.erb"
     app_json = ERB.new(File.new(erb_file).read, nil, '-').result(binding)
 
-    begin
+    #begin
     #TODO: raise error checking
 
  	    retries = 0
@@ -51,9 +51,9 @@ Puppet::Type.type(:marathon_app).provide(:v2, :parent => Puppet::Provider) do
       if response.ok?
         Puppet.info("Created new app called #{name}")
       end
-    rescue
-      puts response
-    end
+    #rescue
+    #  puts response
+    #end
   end
 
   def exists?
