@@ -63,8 +63,11 @@ class marathon (
   class { 'marathon::install': } ->
   class { 'marathon::service': }
 
+  stage { 'last': }
+  Stage['main'] -> Stage['last']
   class { 'marathon::app_factory':
     apps    => $apps,
     require => [ Service['marathon'], Package[$package] ],
+    stage   => last,
   }
 }
