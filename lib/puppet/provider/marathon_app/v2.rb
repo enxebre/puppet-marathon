@@ -50,12 +50,13 @@ Puppet::Type.type(:marathon_app).provide(:v2, :parent => Puppet::Provider) do
 
 		    if response.ok?
 		      Puppet.info("Created new app called #{name}")
+		      break
 		    end     
 	    rescue
-	      puts response
+	      puts "Response is: #{response}"
 	    end
       retries = retries+1	    
-    end while retries<3 and !response.ok?  
+    end while retries<3  
   end
 
   def exists?
