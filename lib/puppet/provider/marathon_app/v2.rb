@@ -31,17 +31,23 @@ Puppet::Type.type(:marathon_app).provide(:v2, :parent => Puppet::Provider) do
 
     erb_file = "#{Pathname.new(File.expand_path('../../../templates', __FILE__))}/app.json.erb"
     app_json = ERB.new(File.new(erb_file).read, nil, '-').result(binding)
+
     begin
+    #TODO: raise error checking
 
-      response = @client.request(
-          'POST',
-          url,
-          nil,
-          app_json,
-          extheader
-      )
+ 	    retries = 0
+ 	    while retries<3 and !response.ok? do
+	      sleep 2
+	      response = @client.request(
+	          'POST',
+	          url,
+	          nil,
+	          app_json,
+	          extheader
+	      )
+	      retries =+1  
+	    end
 
-      #TODO: raise error checking
       if response.ok?
         Puppet.info("Created new app called #{name}")
       end
