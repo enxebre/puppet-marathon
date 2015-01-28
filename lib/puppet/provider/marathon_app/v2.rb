@@ -36,7 +36,7 @@ Puppet::Type.type(:marathon_app).provide(:v2, :parent => Puppet::Provider) do
     #TODO: raise error checking
 
  	    retries = 0
- 	    while retries<3 and !response.ok? do
+ 	    begin
 	      sleep 2
 	      response = @client.request(
 	          'POST',
@@ -45,8 +45,8 @@ Puppet::Type.type(:marathon_app).provide(:v2, :parent => Puppet::Provider) do
 	          app_json,
 	          extheader
 	      )
-	      retries =+1  
-	    end
+	      retries = retries+1  
+	    end while retries<3 and !response.ok? 
 
       if response.ok?
         Puppet.info("Created new app called #{name}")
