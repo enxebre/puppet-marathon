@@ -47,14 +47,14 @@ Puppet::Type.type(:marathon_app).provide(:v2, :parent => Puppet::Provider) do
 	          app_json,
 	          extheader
 	      )
-	      retries = retries+1   
 
 		    if response.ok?
 		      Puppet.info("Created new app called #{name}")
 		    end     
 	    rescue
 	      puts response
-	    end	    
+	    end
+      retries = retries+1	    
     end while retries<3 and !response.ok?  
   end
 
