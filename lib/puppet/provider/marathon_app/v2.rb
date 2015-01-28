@@ -53,7 +53,7 @@ Puppet::Type.type(:marathon_app).provide(:v2, :parent => Puppet::Provider) do
 		      break
 		    end     
 	    rescue
-	      puts "Response is: #{response}"
+	      puts "Response from #{url} is: #{response}"
 	    end
       retries = retries+1	    
     end while retries<3  
